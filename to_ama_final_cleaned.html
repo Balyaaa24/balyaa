@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Ama, From Balya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6f0;
+      font-family: 'Open Sans', sans-serif;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .emoji {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 80px 20px;
+      color: #8b005d;
+      background: rgba(255, 240, 245, 0.75);
+      margin: 60px auto 20px;
+      width: 85%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.8);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 60px;
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .images img {
+      width: 200px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ff99bb;
+    }
+
+    p {
+      font-size: 22px;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+
+    .animated-text {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #cc0077;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    .footer {
+      font-family: 'Dancing Script', cursive;
+      font-size: 30px;
+      margin-top: 40px;
+      color: #b30059;
+    }
+
+    .byline {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #994466;
+    }
+
+    #startBtn {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      padding: 15px 30px;
+      background-color: #ffb6c1;
+      color: #8b005d;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px pink;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tombol untuk memulai musik -->
+  <button id="startBtn">Play Music</button>
+
+  <!-- Musik latar -->
+  <audio id="bgMusic" loop>
+    <source src="musik1.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="content">
+    <h1>To Ama</h1>
+
+    <div class="images">
+      <img src="foto1.jpg" alt="Photo 1">
+      <img src="foto2.jpg" alt="Photo 2">
+      <img src="foto3.jpg" alt="Photo 3">
+    </div>
+
+    <p>Just wanna say... you're as pretty as a flower. You're very pretty &lt;3</p>
+    <p>I never fake my compliments. So if I say you're pretty, you areeee!!!</p>
+    <p>In English: "You so pretty"<br>In LyLa: "Not because of the makeup on your face or that red lipstick"</p>
+    <p>
+      You are so beautiful, elegant, pretty, charming, attractive, gorgeous, fine, magnificent, graceful, ideal, nice,
+      delightful, lovely, splendid, wonderful, perfect, funny, adorable, unique, radiant, aesthetic, cute, stunning,
+      magnetic, glossy, marvelous, one of a kind, winsome, mesmerizing, flawless, adoring, sweet.
+    </p>
+
+    <div class="footer">From Balya</div>
+    
+  </div>
+
+  <script>
+    const emojis = ['💖','🌸','💕','💘','🌷','💓'];
+    for (let i = 0; i < 50; i++) {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (5 + Math.random() * 5) + 's';
+      emoji.style.fontSize = (20 + Math.random() * 20) + 'px';
+      emoji.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(emoji);
+    }
+
+    const startBtn = document.getElementById('startBtn');
+    const bgMusic = document.getElementById('bgMusic');
+
+    startBtn.addEventListener('click', () => {
+      bgMusic.play().then(() => {
+        startBtn.style.display = 'none';
+      }).catch((error) => {
+        alert("Browser memblokir autoplay. Silakan coba klik lagi.");
+      });
+    });
+  </script>
+
+</body>
+</html>
